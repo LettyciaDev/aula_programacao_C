@@ -37,7 +37,24 @@
     }
 
   */
-int imprimirNumeros1a100();
+
+ /* Sequência de escape:
+    \a : toca um bipe, alarme sonoro padrão do sistema
+    \b : backspace
+    \n : quebra de linha
+    \t : tabulação horizontal (TAB)
+    \r : retorna ao inicio da linha
+    \0 : caractere nulo
+    \v : tabulação vertical
+    \\ : caractere \
+    \' : caractere '
+    \" : caractere "
+    \? : '' ?
+    \123 : codigo em octal
+    \X12 : codigo em hexadecimal
+    %% : caractere %
+ */
+/*int imprimirNumeros1a100();
 
 int main() {
     int min, max;
@@ -65,3 +82,19 @@ int calcularSomatorioImpares10e100() {
     }
     return soma;
 }
+*/
+  int main() {
+        int min = 10, max = 20;
+        int *ptr;
+        printf("min = %d - max = %d - ptr = %p\n", min,max,ptr);
+
+        ptr = &min;
+        *ptr = 15;
+        printf("min = %d - max = %d - ptr = %p\n", min,max,ptr);
+
+        ptr = &max;
+        *ptr = 25;
+        printf("min = %d - max = %d - ptr = %p\n", min,max,ptr);
+
+
+    }
