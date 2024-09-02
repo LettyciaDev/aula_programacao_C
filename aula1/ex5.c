@@ -35,12 +35,12 @@ int main () {
         return -1;
     } */
 
-    int vetoresOrdenados(int v[], int tam) {
+    /*int vetoresOrdenados(int v[], int tam) {
         for (int i = 1; i < tam; i++) {
             if (v[i] < v[i-1]) {
                 return 0;
             }
         }
         return 1;
-    }
+    } */
 }
