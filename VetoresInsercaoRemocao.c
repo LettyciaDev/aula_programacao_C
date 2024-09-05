@@ -95,8 +95,8 @@ int menu(int QTD[], int *tam) {
 
 int buscaBinaria(int QTD[], int tam) {
     int esq = 0, dir = tam - 1, meio, valor;
-    printf('Digite o valor: ');
-    scanf('%lf', &valor);
+    printf("Digite o valor: ");
+    scanf("%d", &valor);
 
     while (esq <= dir) {
         int meio = (esq + dir) / 2;
