@@ -128,6 +128,3 @@ void mediaLinha(int mat[][QTD_COLUNAS], int lin, int col) {
     printf("Média dos elementos da linha %d: %d\n", i, mediaLinha);
      }
 }
-
-
-
