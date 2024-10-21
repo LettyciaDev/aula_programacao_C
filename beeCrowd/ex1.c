@@ -3,19 +3,31 @@
 #include <ctype.h>
 #define TAM 15
 
+
+// 1272
+// 1871
+// 2587
+// 2694
+// 2866
+// 3358
 void LerString(char *str,int tam);
 void SomaString(char *str, int *soma);
 
 int main(){
-    int N,j=0;
-    scanf("%d",&N);
+    int N, j = 0;
+
+    scanf("%d", &N);
     getchar();
-    while(j<N){
+
+    while(j < N){
         char str[TAM];
         int soma = 0;
+
         LerString(str,TAM);
-        int num =0,total=0;
-        for (int i=0;i<TAM;++i){
+
+        int num = 0, total = 0;
+
+        for(int i = 0; i < TAM; ++i){
             if (isdigit(str[i])){
                 num = num*10 + (str[i] - '0');
                 ++total;
