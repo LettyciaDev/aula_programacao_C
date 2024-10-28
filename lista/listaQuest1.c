@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#define QTD 26
+#define QTD 3
 #define TAM_NOME 50
 #define TEMP_CHAR 256
 
-struct Estado{
+struct Estado {
     char nome[TAM_NOME];
     int num_veiculo;
     int acidente;
@@ -19,37 +19,35 @@ float percentVeiculo(struct Estado estado);
 float mediaAcidentes(struct Estado estado[], int qtd);
 void estadosAcimaMedia(struct Estado estado[], int qtd, float media);
 
-int main(){
+int main() {
     int maior, menor;
     struct Estado estados[QTD];
 
     lerEstados(estados, QTD);
 
     maiorMenorAcidente(estados, QTD, &maior, &menor);
-    printf("Estado com maior numero de acidente: %s (%d ° posicao)", estados[maior].nome, maior);
-    printf("Estado com menor numero de acidente: %s (%d ° posicao)", estados[menor].nome, menor);
+    printf("Estado com maior numero de acidentes: %s (posição %d)\n", estados[maior].nome, maior);
+    printf("Estado com menor numero de acidentes: %s (posição %d)\n", estados[menor].nome, menor);
 
-    printf("\nPercentual de veiculos envolvidos em acidentes: \n");
-    for (int i = 0; i < QTD; ++i){
+    printf("\nPercentual de veiculos envolvidos em acidentes:\n");
+    for (int i = 0; i < QTD; ++i) {
         float percentual = percentVeiculo(estados[i]);
-        printf("Estado: %s percentual: %.2f%%\n", estados[i].nome, percentual);
+        printf("Estado: %s - Percentual: %.2f%%\n", estados[i].nome, percentual);
     }
 
     float media = mediaAcidentes(estados, QTD);
-    printf("\nMedia de acidentes no pais: %.2f\n", media);
+    printf("\nMédia de acidentes no país: %.2f\n", media);
 
-    printf("\nEstados acima da média: \n");
+    printf("\nEstados acima da media:\n");
     estadosAcimaMedia(estados, QTD, media);
 
     return 0;
 }
 
 void lerEstados(struct Estado estados[], int qtd) {
-    struct Estado estado;
-
-    for (int i = 0; i < QTD; ++i){
-        printf("Dados do %d° estado: ", i+1);
-        lerEstado(&estado);
+    for (int i = 0; i < qtd; ++i) {
+        printf("Dados do %dº estado:\n", i + 1);
+        lerEstado(&estados[i]);
     }
 }
 
@@ -61,49 +59,48 @@ void lerStr(char *str, int tam) {
     }
 }
 
-void lerEstado(struct Estado *estado){
+void lerEstado(struct Estado *estado) {
     char temp[TEMP_CHAR];
+    
     printf("Digite o nome do Estado: ");
     lerStr(estado->nome, TAM_NOME);
-    printf("Digite o numero de veiculo: ");
-    scanf("%d", estado->num_veiculo);
-    printf("Digite o numero de acidentes: ");
-    scanf("%d", estado->acidente);
-    lerStr(temp, TEMP_CHAR);
+
+    printf("Digite o número de veículos: ");
+    scanf("%d", &estado->num_veiculo);
+    
+    printf("Digite o número de acidentes: ");
+    scanf("%d", &estado->acidente);
+
+    // Limpa o buffer do stdin para evitar problemas com fgets
+    fgets(temp, TEMP_CHAR, stdin);
 }
 
-void maiorMenorAcidente(struct Estado a[], int qtd, int *maior, int *menor){
+void maiorMenorAcidente(struct Estado a[], int qtd, int *maior, int *menor) {
     *maior = 0;
     *menor = 0;
 
-    for (int i = 0; i < qtd; ++i){
-       if(a[i].acidente > a[*maior].acidente){
+    for (int i = 1; i < qtd; ++i) {
+        if (a[i].acidente > a[*maior].acidente) {
             *maior = i;
-       }
-
-       if(a[i].acidente < a[*menor].acidente){
+        }
+        if (a[i].acidente < a[*menor].acidente) {
             *menor = i;
-       }
+        }
     }
-   
 }
 
-float percentVeiculo(struct Estado estado){
-    float percentual;
-   
-    percentual = (estado.acidente / estado.num_veiculo) * 100;
-    return percentual;
+float percentVeiculo(struct Estado estado) {
+    if (estado.num_veiculo == 0) return 0.0; // Evita divisão por zero
+    return (float)estado.acidente / estado.num_veiculo * 100;
 }
-
 
 float mediaAcidentes(struct Estado estado[], int qtd) {
-    float somaAcidentes = 0.0;
+    int somaAcidentes = 0;
     for (int i = 0; i < qtd; i++) {
         somaAcidentes += estado[i].acidente;
     }
-    return  somaAcidentes / qtd;
+    return (float)somaAcidentes / qtd;
 }
-
 
 void estadosAcimaMedia(struct Estado estado[], int qtd, float media) {
     for (int i = 0; i < qtd; i++) {
@@ -112,3 +109,17 @@ void estadosAcimaMedia(struct Estado estado[], int qtd, float media) {
         }
     }
 }
+
+/*
+São Paulo
+500000
+5000
+
+Rio de Janeiro
+300000
+2000
+
+Minas Gerais
+400000
+1000
+*/
