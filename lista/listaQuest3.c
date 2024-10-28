@@ -6,7 +6,6 @@
 #define TAM_CPF 15
 #define TAM_TELEFONE 15
 
-// Estrutura para armazenar dados da conta
 struct Conta {
     int numero;
     char nome[TAM_NOME];
@@ -101,16 +100,16 @@ void cadastrarConta(struct Conta contas[], int *qtd, int numero) {
 
     contas[*qtd].numero = numero;
     printf("Digite o nome do titular: ");
-    getchar(); // Limpar o buffer
+    getchar(); 
     fgets(contas[*qtd].nome, TAM_NOME, stdin);
-    contas[*qtd].nome[strcspn(contas[*qtd].nome, "\n")] = 0; // Remover nova linha
+    contas[*qtd].nome[strcspn(contas[*qtd].nome, "\n")] = 0; 
     printf("Digite o CPF do titular: ");
     fgets(contas[*qtd].cpf, TAM_CPF, stdin);
-    contas[*qtd].cpf[strcspn(contas[*qtd].cpf, "\n")] = 0; // Remover nova linha
+    contas[*qtd].cpf[strcspn(contas[*qtd].cpf, "\n")] = 0; 
     printf("Digite o telefone de contato: ");
     fgets(contas[*qtd].telefone, TAM_TELEFONE, stdin);
-    contas[*qtd].telefone[strcspn(contas[*qtd].telefone, "\n")] = 0; // Remover nova linha
-    contas[*qtd].saldo = 0.0; // Saldo inicial
+    contas[*qtd].telefone[strcspn(contas[*qtd].telefone, "\n")] = 0; 
+    contas[*qtd].saldo = 0.0; 
 
     (*qtd)++;
     printf("Conta cadastrada com sucesso!\n");
