@@ -1,25 +1,28 @@
 #include <stdio.h>
 
+#define tam 5
+
 int main () {
-    int tam[5];
-    int i;
-    int v;
-    double valor;
+    int vetor[tam];
+    int i, v, valor;
 
-    buscaMelhoradaSeitinela( v,  tam, valor);
+    // buscaMelhoradaSeitinela( v,  tam, valor);
 
-    for (int i =0; i < tam; i++) {
+    for (int i =0; i < tam; ++i) {
         printf("Digite o %d valor", i);
-        scanf("%f", &valor);
+        scanf("%d", &vetor[i]);
     }
+
+    printf("Qual valor deseja procurar?");
+    scanf("%d", &valor);
+
     for (int i =0; i < tam; i++) {
-        if (tam[i] >= valor){
-            break;
+        if (vetor[i] == valor) {
+
+            return i;
         }
     }
-    if (tam[i] == valor) {
-        return i;
-    }
+
     return -1;
 
     /*int buscaMelhoradaSeitinela(int v, int tam, int valor) {
