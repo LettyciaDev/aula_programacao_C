@@ -232,7 +232,7 @@ void excluirFilme(FILE *strm) {
     }
 
     struct Movie m;
-    rewind(strm);  // Move o cursor para o início do arquivo original
+    rewind(strm);  
 
     // Copia todos os registros que NÃO têm o ID a ser excluído
     while (fread(&m, sizeof(struct Movie), 1, strm)) {
@@ -247,21 +247,21 @@ void excluirFilme(FILE *strm) {
     fclose(strm);
     fclose(arquivoTemp);
 
-    remove("videos.bin");
-    rename("temp.bin", "videos.bin");
+    remove("strm.bin");
+    rename("temp.bin", "strm.bin");
 
-    strm = fopen("videos.bin", "rb+");
+    strm = fopen("strm.bin", "rb+");
     if (!strm) {
         printf("Erro ao reabrir o arquivo original!\n");
     }
 }
 
-void relatorioUsuarioFilme(FILE *users, FILE *strm) {
+void relatorioUsuarioFilme(FILE *user, FILE *strm) {
     struct User u;
     struct Movie m;
 
-    rewind(users);
-    while (fread(&u, sizeof(struct User), 1, users)) {
+    rewind(user);
+    while (fread(&u, sizeof(struct User), 1, user)) {
         printf("Usuario: %s\n", u.nome);
         printf("Filmes Favoritados:\n");
         for (int i = 0; i < u.qtd_favoritos; i++) {
